@@ -1,0 +1,747 @@
+
+\chapter{Diagonalización de matrices}
+
+
+\normalsize {Una} de las aplicaciones de la diagonalización de matrices es la \emph{diagonalización de formas cuadráticas}, en física es frecuente encontrarse con expresiones cuadráticas como $Q= x_1^2-8x_1x_2-5x_2^2$, en que aparecen términos cruzados, $x_1 x_2$, lo que dificulta mucho el cálculo. Veremos que mediante un adecuado cambio de base (cambio de variable), que denotaremos por una matriz $M$, al diagonalizarla se consigue escribir la forma cuadrática anterior en la nueva base de modo que no aparezcan productos cruzados, $Q=3y_1^2-7y_2^2$. Piénsese, por ejemplo, en la integración de estas formas cuadráticas $ \left( \int \dd x_1 \int \dd x_2 \, ( x_1^2-8x_1x_2-5x_2^2 ) \right)$ y en lo sencillo que resulta hacerlo sin formas cruzadas, $\left( \int \dd y_1 \int \dd y_2 \, ( 3y_1^2-7y_2^2 ) \right)$  (o en despejar una variable en función de las otra/s, despejar $x_1$ o despejar $y_1$, por ejemplo.).  Este es el motivo por el que veremos la \emph{diagonalización de matrices}.
+
+\section{Disgonalización de matrices}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.1);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.1);
+	\end{tikzpicture}
+
+Sea $A$ una matriz cuadrada de orden $n$
+
+Sean $\{ \vec v_1, \vec v_2, \cdots , \vec v_n \}\, , \ \ n \ $ vectores de $\mathbb R^n$
+
+Decimos que $\boldsymbol{\vec v_i}$ es \textbf{valor propio} de la matriz $A$ con \textbf{valor propio} asociado $\boldsymbol{\lambda_i} \in \mathbb R$  si $\ \subrayado{ \boldsymbol{A\, \vec v_i \ = \ \lambda_i \, \vec v_i} }$
+
+La ecuación $\ A\, \vec v_i \ = \ \lambda_i \, \vec v_i\ $ puede escribirse como $\ A\, \vec v_i \ - \ \lambda_i \, \vec v_i \ = \ 0\, , \ $ matricialmente, $\ ( \, A \, - \, \lambda_i I \, )\,  \vec v_i = 0\, $ que no es más que un sistema lineal de ecuaciones (SEL) homogéneo. Para que admita soluciones distintas a la trivial es necesario que $\ \subrayado{\boldsymbol{ \, \det(A-\lambda_iI)=0}}\,. \ $ Ecuación que nos permitirá determinar los valores propios $\lambda_i$ y, para cada uno de ellos, encontrar los vectores propios $\vec v_i$ asociados.
+
+Dado un valor propio $\lambda_i$ y su vector propio asociado $\vec v_i$ de una matriz cuadrada $A$, entonces, el vector $k\vec v_i,\ \forall k\in \mathbb R$ también es vector propio de la matriz $A$ con valor propio $\lambda_i$
+
+Veámoslo: por ser $\vec v_i$ propio de $A$ si $\exists \lambda_i \ / \ A\vec v_i=\lambda_i \vec v_i.$
+$\quad A(k\vec v_i)=k\, A\vec v_i= k\, \lambda_i \vec v_i = \lambda_i\,  (k \vec v_i)\, , \ $ por lo que $k\vec v_i$ es vector propio de $A$ con valor propio $\lambda_i \qquad \Box$. 
+
+Dado un valor propio $\vec v_i$, existe una familia infinita de valores propios $k\vec v_i,\ \forall k\in \mathbb R$ (El SEL homogéneo, con la condición $\det(A-\lambda I)=0$ da lugar a un sistema compatible indeterminado, con infinitas soluciones). En física se toman como \emph{valores propios} los vectores \emph{normalizados}, de módulo unidad.
+
+\color{gris}
+\vspace{5mm} Veamos un \underline{ejemplo}:
+
+Sea $A=\mqty(1&-4\\-4&-5)\, . \ $ Encontrar los valores y los vectores propios de la matriz $A$·.
+
+\rule{200pt}{0.1pt}
+
+$\det(A-\lambda I)=\left| \,\mqty(1&-4\\-4&-5) - \lambda \mqty(1&0\\0&1) \right|=\det \left| \mqty{1-\lambda & -4\\-4& -5-\lambda} \right|=  (1-\lambda)(-5-\lambda)-(-4)(-4) =  $
+
+$=-5-\lambda+5\lambda+\lambda^2-16=\lambda^2+4\lambda-21=0 \ \to \ \lambda_1=3\, ; \ \ \lambda_2=-7\ $ Valores propios.
+
+Cada valor propio llevará asociado su vector propio:
+
+\vspace{5mm} $\triangleright \quad \boxed{\lambda_1=3} \ \to A\vec v_1=\lambda_1 \vec v_1$
+
+Si $\vec v_1=\mqty(z_1\\z_2) \ \ \to \ \ \mqty(1&-4\\-4&-5)\mqty(z_1\\z_2)=3\mqty(z_1\\z_2) \ \to \ \mqty(z_1-4z_2\\-4z_1-5z_2)=\mqty(3z_1\\3z_2) \ \ \to \ $
+
+$\to \  \mqty(-2z_1-4z_2\\-4z_1-8z_2)=\mqty(0\\0)\ $ Que n o es más que un  SEL homogéneo:
+
+$\begin{cases} \ -2z_1-4z_2 & =0 \\ \ -4z_1-8z_2 &=0 \end{cases} \to $ Ambas ecuaciones son la misma: $\ z_1+2z_2=0 \, .  \ $ Tomando $z_2=-1 \ \to \ z_1=2$
+
+El vector $\vec v_1=\mqty(2\\-1)\, , \ $ de módulo $\sqrt{2^2+(-1)^2}=\sqrt{5}$. 
+
+Tomando el como valor propio el vector normalizado, 
+$\quad \boxed{\boldsymbol{ \lambda_1= 3 \ \ \leftrightarrow \ \  \vec v_1=\dfrac{1}{\sqrt{5}} \mqty(2\\-1)}}$
+
+\vspace{5mm} $\triangleright \quad \boxed{\lambda_2=-7} \ \to A\vec v_2=\lambda_2 \vec v_2$
+
+Si $\vec v_2=\mqty(z_1\\z_2) \ \ \to \ \ \mqty(1&-4\\-4&-5)\mqty(z_1\\z_2)=-7\mqty(z_1\\z_2) \ \to \ \mqty(z_1-4z_2\\-4z_1-5z_2)=\mqty(-7z_1\\-7z_2) \ \ \to \ $
+
+$\to \  \mqty(8z_1-4z_2\\-4z_1+2z_2)=\mqty(0\\0)\ $ Que no es más que un  SEL homogéneo:
+
+$\begin{cases} \ -2z_1-4z_2 & =0 \\ \ -4z_1-8z_2 &=0 \end{cases} \to $ Ambas ecuaciones son la misma: $\ 2z_1-2z_2=0 \, \  $ tomando $z_1=11 \ \to \ z_2=2$
+
+El vector $\vec v_2=\mqty(1\\2)\, , \ $ de módulo $\sqrt{1^2+2^2}=\sqrt{5}\, . \ \ $ Normalizado, 
+$\quad \boxed{\boldsymbol{ \lambda_2= -7 \ \ \leftrightarrow \ \  \vec v_2=\dfrac{1}{\sqrt{5}} \mqty(1\\2)}}$
+
+\begin{center}
+	\rule{200pt}{0.1pt}
+\end{center}
+
+\color{black}
+Encontrados, si los tiene, los $n$-vectores propios, normalizado,  de la matriz cuadrada de orden $n\, , \ $ $A$, los podemos disponer en forma de matriz fila de $n$ vectores columna $(1\times n)$. A dicha matriz de vectores propios la llamaremos \emph{matiz de cambio de base}, 
+
+$\ \boldsymbol{ M=\mqty ( & \boxed{ \mqty{   \\  \vec v_1   \\ \, } }_{(n\times 1)}  & \boxed{ \mqty{   \\  \vec v_2   \\ \, } }_{(n\times 1)}  & \cdots \  & \boxed{ \mqty{   \\  \vec v_n   \\ \, } }_{(n\times 1)} & )_{(n\times n)} } \ $
+
+Puesto que aún normalizado un vector aún nos queda una posibilidad de elegir su signo, tanto valdría $\vec v_i$ como $\vec v_i$ (estando normalizados) para ser vector propio, en física vamos a exigir, además, que $\det M>0$.
+
+\vspace{5mm}
+\color{gris}
+
+Continuemos con nuestro \underline{ejemplo} y calculemos la matriz $M$ de vectores propios asociada a la matriz $A$.
+
+\rule{200pt}{0.1pt}
+
+$\boldsymbol{ M=\mqty( 2/\sqrt{5} & 1/\sqrt{5} \\ -1/\sqrt{5} & 2/\sqrt{5} )=\dfrac 1{\sqrt{5}} \mqty(2&1\\-1&2)}\, . \ $ 
+
+Se cumple, además, que $\ \det M=(1/\sqrt{5})^2 \, (4-(-1))=1>0$
+
+\begin{center}
+	\rule{200pt}{0.1pt}
+\end{center}
+
+\color{black}
+
+
+
+\textbf{\underline{Teorema de álgebra}}: Si una matriz cuadrada $A$ es \textbf{simétrica}, es decir, $\boldsymbol{A=A^T}$, entonces la matriz $A$ es \textbf{\emph{diagonalizable}}: existe la matriz diagonal $\ \subrayado{\boldsymbol{D=M^TAM}}$ , siendo $D$ la matriz \emph{diagonal} formada por los valores propios de $A$ y $M$ la matriz de sus vectores propios (o matriz de cambio de base): 
+$D \ = \ \mqty(\lambda_1&\cdots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \cdots \ & \lambda_n)=\text{diag}\ (\lambda_1, \cdots , \lambda_n)$
+
+ 
+
+Dos vectores propios de una matriz simética, por tanto diagonalizable $A$, son ortogonales: $\ \boldsymbol{ \vec v_i \cdot \vec v_j=0}$
+
+Veámoslo: Sean $\vec v_i$ y $\vec v_j$ dos vectores propios distintos de la matriz $A$, sus valores propios asociados serán $\lambda_i, \lambda_j$, con $\lambda_i\neq \lambda_j$. Caculemos el producto $\lambda_i \, \vec v_i \cdot \vec v_j$ y tengamos en cuenta que el producto escalar se puede escribir en forma matricial como $\vec v_i \cdot \vec v_j =v_i^T  v_j$
+
+$\lambda_i  \vec v_i \cdot \vec v_j = (\lambda_i  \vec v_i )\cdot \vec v_j=(A\vec v_i)\cdot \vec v_j= (A\vec v_i)^T v_j = \left[ \begin{matrix} A=A^T \\ (PQ)^T=Q^TP^T  \end{matrix} \right] = v_i^T A^T v_j =v_i^T A v_j = v_i^T (Av_j)=v_i^T(\lambda_j v_j)= \vec v_i \cdot (\lambda_j \vec v_j)=\lambda_j \vec v_i\cdot \vec v_j$
+
+Hemos obtenido $\ \lambda_i  \vec v_i \cdot \vec v_j =\lambda_j \vec v_i\cdot \vec v_j \ \to \lambda_i  \vec v_i \cdot \vec v_j -\lambda_j \vec v_i\cdot \vec v_j =0 \ \to \ \underbrace{(\lambda_i -\lambda_j)}_{\neq 0} \vec v_i \cdot \vec v_j =0 \ \Rightarrow \ \vec v_i \bot \vec v_j \quad \Box$
+ 
+
+Se puede demostrar que para toda \textbf{matriz ortogonal} (matriz de rotación) se cumple que $\boldsymbol{ M^{-1}=M^T } \quad $
+Si una matriz es ortogonal, $\boldsymbol{MM^T=I} \quad  $
+
+Veámoslo, Al ser $M$ ortogonal, $M^T=M^{-1}$, entonces, $MM^T=MM^{-1}=I\qquad \Box$
+
+Con esto, de la expresión $D=M^TAM$, premultiplicando toda la ecuación por $M$ y postmultiplicando por $M^{-1}$ y sabiendo que $M$ es ortogonal, tenemos:
+
+$M(D)M^{-1}=M(M^TAM)M^{-1}= MM^{-1}\, A\, MM^{-1}=IAI=A\, , \ $ por lo que $\ \subrayado{\boldsymbol{A=MDM^T}}$
+
+
+
+\vspace{5mm}
+\color{gris}
+
+Continuando con nuestro \underline{ejemplo}, comprobar que $M$ es ortogonal, que lo son los vectores propios que la forman, que $det(M)=1$, comprobar también que $D=M^TAM=\text{diag}(\lambda_i)$ y que $A=MDM^T$
+
+\rule{200pt}{0.1pt}
+
+$\triangleright \qquad  MM^T=\dfrac 1{\sqrt{5}} \mqty(2&1\\-1&2) \ \dfrac 1{\sqrt{5}} \mqty(2&-1\\1&2) = \dfrac 1 5 \mqty(5&0\\0&5)=I $
+
+$\triangleright \qquad \vec v_1\cdot \vec v_2=v_1^T \, v_2 = \dfrac 1{\sqrt{5}}\mqty(2&-1) \dfrac 1{\sqrt{5}} \mqty(1\\2)=\dfrac 1 5 (2-2)=0\ \to \vec v_1 \bot \vec v_2$
+
+$\triangleright \qquad  \det(M)=\det \left[ \dfrac 1{\sqrt{5}} \mqty(2&1\\-1&2) \right] = \left( \dfrac 1{\sqrt{5}} \right)^2 \, (4-(-1)=\dfrac 5 5 =1>0$
+
+$\triangleright \qquad  D=M^TAM= \dfrac 1{\sqrt{5}} \mqty(2&-1\\1&2) 
+\mqty(1&-4\\-4&-5)
+\dfrac 1{\sqrt{5}} \mqty(2&1\\-1&2)=
+\dfrac 1 5 \mqty(2&-1\\1&2) 
+\mqty(6&-7\\-3&-14)=\dfrac 1 5 \mqty(15&0\\0&-35)$
+
+$D=\mqty(\lambda_1=3&0\\0&\lambda_2=-7)=\text{diag}\{\lambda_1,\lambda_2\}$
+
+$\triangleright \qquad  A=MDM^T=\dfrac 1{\sqrt{5}} \mqty(2&1\\-1&2) \mqty(3&0\\0&-7) \dfrac 1{\sqrt{5}} \mqty(2&-1\\1&2)=\dfrac 1 5 \mqty(2&1\\-1&2) \mqty(6&-3\\-7&-14)=\dfrac 1 5 \mqty(5&-20\\-20&-25)$
+
+$A=\mqty(2&-1\\1&2)$
+
+\begin{center}
+	\rule{200pt}{0.1pt}
+\end{center}
+
+\color{black}
+
+
+\vspace{5mm}
+
+\section{Diagonalización de formas cuadráticas}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.1);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.1);
+	\end{tikzpicture}
+
+Se llama \textbf{forma cuadrática} a toda espresión de la forma:
+$\quad Q=\displaystyle \sum_{i=1}^n a_{ii}x_i^2 + \sum_{i\neq j} \dfrac{(a_{ij}+a_{ji})}{2} x_ix_j$
+
+Matricialmente, $ \quad \boldsymbol{Q=x^T\, A\, x} = 
+\mqty(x_1&x_2&\cdots &x_n) \mqty( a_{11} & \cdots  & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{n1} & \cdots  & a_{nn}) \mqty(x_1\\ \vdots \\ x_n)$
+
+
+Por ejemplo, la expresión $Q=ax^2+bxy+cx^2$ se puede escribir matricialmente como $\mqty(x&y) \mqty(a&\frac b 2 \\ \frac b 2 & c) \mqty(x\\y)$
+
+Para $\ Q=ax^2+by^2+cz^2+dxy+exz+fyz=\mqty(x&y&z)\mqty(a&\frac d 2 & \frac e 2 \\ \frac d 2 & b & \frac f 2 \\ \frac e 2 & \frac f 2 & c) \mqty(x_1\\x_2\\x_3)$
+
+En general, si $\ Q=a_{11}x_1^2+a_{22}x_2^2+a_{33}x_3^2+\cdots +a_{nn}x_n^2 \, + \  a_{12}x_1x_2+a_{13}x_1x_3+ \cdots \, , \ $ matricialmente, 
+
+$Q=\mqty(x_1&x_2&x_3&\cdots &x_n) 
+\mqty(
+a_{11}& \textcolor{red}{a_{12}/2} & \textcolor{blue}{a_{13}/2} & \cdots & \textcolor{green}{a_{1n}/2} \\
+\textcolor{red}{a_{12}/2}& a_{22} & \cdots & \cdots & \cdots \\
+\textcolor{blue}{a_{13}/2}& \cdots & a_{33} & \cdots & \cdots \\
+\vdots & \ddots & \vdots & \ddots & \vdots \\
+\textcolor{green}{a_{1n}/2} & \cdots & \cdots & \cdots & \cdots  )
+\mqty(x_1\\x_2\\x_3\\ \vdots \\ x_n)$
+
+
+Vemos que en todas las expresiones, $A$ es una matriz simétrica, $A=A^T$, luego es ortogonalmete diagonalizable, $M^{-1}=M^T$. Buscamos sus valores propios $\lambda_i$ y sus valores propios $\vec v_i$ y tendremos:
+
+$$D=M^TAM \quad \leftrightarrow \quad A=MDM^T\, ; \qquad \qquad x=My \quad \leftrightarrow \quad y=M^Tx$$
+
+Con $M$ la matriz de vectores propios como columnas y $D$ la matriz diagonal de valores propios.
+
+Al hacer el cambio de variable $\ x=My\, , \ $ la forma cuadrática se puede escribir, en las nuevas variables,  como:
+
+$$\boldsymbol Q=\ \subrayado{\boldsymbol{ x^T\, A \, x}} \ =(MY)^TA(My)=y^TM^TAMY=y^T(M^TAM)y=\ \subrayado{\boldsymbol{y^T\, D \, y}}$$
+
+Expresión que al ser $D$ matriz diagonal proporciona una \emph{forma cuadrática sin productos cruzados}, se dice que se ha \textbf{\emph{diagonalizado la forma cuadrática}}.
+
+$Q =y^T\, D\, y=\mqty(y_1&\cdots &y_n) \mqty(\lambda_1&\cdots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \cdots \ & \lambda_n) \mqty(y_1\\ \vdots & y_n)= \lambda_1 y_1^2 + \cdots + \lambda_n y_n^2 $
+
+$\boldsymbol{ Q \ = \  \displaystyle \sum_{i=1}^n\, \lambda_i \, y_i^2}\, , \quad $ \textbf{forma cuadrática diagonalizada} (sin productos cruzados).
+
+
+
+\vspace{10mm}
+\color{gris}
+
+	\underline{Ejemplo}: diagonalizar la expresión: $\ x_1^2-8x_1x_2-5x_2^2$
+
+\rule{200pt}{0.1pt}
+
+Llamenos $Q=x_1^2-8x_1x_2-5x_2^2\, . \ \ $
+
+Matricialmente:  $\quad Q=\mqty(x_1&x_2) \mqty(1&-4\\-4&-5) \mqty(x_1\\x_2)= \textcolor{gris!50}{\mqty(x_1&x_2) \mqty(8x_1-4x_2\\-4x_1-5x_2)=x_1^2-8x_1x_2-5x_2^2 } $
+
+Es decir, $\quad Q \ = \  x^t\, A\, x\, , \quad $
+con $x=\mqty(x_1&x_2)$ y $A=\mqty(8&-4\\-4&-5)=A^T$
+
+Las matrices de vectores propios $M$ y de valores propios $D$  de nuestra matriz $A$ han sido calculadas en ejemplos anteriores:
+$ \quad M=\dfrac 1{\sqrt{5}} \mqty(2&1\\-1&2) \qquad  D=\mqty(3&0\\0 &-7)$
+
+Luego, nuestra forma cuadrática con las nuevas variables $y_1, \, y_2$ digonalizada será: 
+
+$\quad Q=3y_1^2-7y_2^2$. 
+
+Comprobémoslo de todos modos.
+
+$Q=x^TAX=y^TDy=\mqty(y_1& y_2)\mqty(3&0\\0 &-7)\mqty(y_1\\y_2)=\mqty(3y_1&-7y_2)\mqty(y_1\\y_2)=3y_1^2-7y_2^2 \qquad \Box$
+
+
+
+Otra comprobación más, como 
+
+$ \quad x=My \ \to \  x=  \mqty(x_1 \\ x_2)= \dfrac 1{\sqrt{5}} \mqty(2&1\\-1&2) \mqty(y_1\\y_2) =  \dfrac 1{\sqrt{5}} \mqty( 2y_1+y_2 \\  -y_1+2y_2) \ \to \ \begin{cases} \ x_1= \dfrac{2y_1+y_2}{\sqrt{5}} \\ \ x_2=\dfrac{-y_1+2y_2}{\sqrt{5}} \end{cases}$
+
+$Q=x_1^2-8x_1x_2-5x_2^2= \left( \dfrac{2y_1+y_2}{\sqrt{5}} \right)^2 - 8 \left( \dfrac{2y_1+y_2}{\sqrt{5}} \right) \left( \dfrac{-y_1+2y_2}{\sqrt{5}} \right)-5 \left( \dfrac{-y_1+2y_2}{\sqrt{5}} \right)^2=$
+
+$=\dfrac{4y_1^2+4y_1y_2+y_2^2-8(-2y_1^2+3y_1y_2+2y_2^2)-5(y_1^2-4y_1y_2+4y_2^2)}{5}=\dfrac{15y_1^2-35y_2^2}{5}=$
+
+$=3y_1^2-7y_2^2 \qquad \qquad \qquad \qquad  \Box$
+
+\begin{center}
+	\rule{200pt}{0.1pt}
+\end{center}
+
+\color{black}
+
+\vspace{15mm}
+\begin{large}
+\begin{myblock}{Teorema de los ejes principales}
+\vspace{2mm}
+
+Si $\ A_{n\times n} \ / \ A^T=A \ \Rightarrow \ \exists M \ / \ x=My \, : \ Q=x^TAX=y^TDy\ $ forma cuadrática diagonalizada, con $\ M=(\, \vec v_i \, ) \quad \text{ y } D=\text{diag}\ \lambda_i\, , $ siendo  $\vec v_i$ ls vectores propios de $A$ con valores propios de $A$ respectivos $\lambda_i$.
+
+\vspace{2mm}	
+\end{myblock}
+\end{large}
+
+\vspace{15mm} 
+
+\begin{cuadro-gris}
+Diagonalizar $\ 5x_1^2-4x_1x_2+5x_2^2$	
+
+\vspace{2mm} Encontar en cambio de variables que elimine el producto cruzado de la elipse $\ 5x_1^2-4x_1x_2+5x_2^2=48\ $ y determina la dirección de los ejes principales (\emph{posición standard de la elipse})	
+\end{cuadro-gris}
+
+$Q=5x_1^2-4x_1x_2+5x_2^2\ \to \ \mqty(x_1&x_2) \mqty(5&-2\\-2&5) \mqty (x_1\\x_2) \ \to \ Q=x^TAx$
+
+$\det(A-\lambda I)=0 \to \mqty|5-\lambda & -2 \\ -2& 5-\lambda|=(5-\lambda)^2-4=0 \ \to 5-\lambda=\pm 2 \ \Rightarrow \ \begin{cases} \ \lambda_1=3 \\ \ \lambda_2=7 \end{cases}$
+
+$\lambda_1=3 \to A\vec v = 3 \vec v \ \to \ \vec v_1=\dfrac 1{\sqrt{2}} \mqty(1\\1)
+\qquad \qquad
+\lambda_2=7 \to A\vec v = 7 \vec v \ \to \ \vec v_2=\dfrac 1{\sqrt{2}} \mqty(-1\\1)$
+
+$\vec M=\dfrac 1{\sqrt{2}}\mqty(1&-1\\1&1)  \quad \text{cambio variable:} \quad \mqty(x_1\\x_2) = \dfrac 1{\sqrt{2}}\mqty(1&-1\\1&1) \mqty(y_1\\y_2)$
+
+Con este cambio $\quad  \to \  Q=\lambda_1y_1^2+\lambda_2y_2^2=3y_1+7y^2$
+
+Hemos demostrado que $\quad 5x_1^2-4x_1x_2+5x_2^2=48=3y_1^2+7y_2^2$, la elipse, escrita en las nuevas variables, no tendrá productos cruzados. Geométricamente significa que estará, respecto a los nueves ejes, en posición standard (no girada). Ver gráfica adjunta.
+
+\vspace{5mm}
+\begin{multicols}{2}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{img-polares/polares54.png}
+\end{figure}
+$\quad$
+
+$Q=48 \ \to \  5x_1^2-4x_1x_2+5x_2^2=48\ $
+
+Elipse girada $45^o$ respecto de ejes $x_1\, , \  x_2$, aparecen producros cruzados $x_1x_2$.
+
+$Q=48 \ \to \  3y_1^2+7y_2^2=48\ $
+
+Elipse centrada (posición standard) respecto de los ejes principales (valores propios) $y_1\, , \ y_2$, girados respecto de los ejes inciales $x_1\, , \  x_2\ \ 45^o$. 
+
+
+\end{multicols}
+
+
+
+
+
+\vspace{15mm}
+
+
+
+\vspace{1cm}
+	
+\begin{miejercicio}
+
+Diagonalizar: $\quad -6\phi_1^2-6\phi_2^2-6\phi_3^2-\sqrt{2}\phi_1\phi_2	-\sqrt{2}\phi_2\phi_3$
+\end{miejercicio}
+
+\vspace{5mm}
+\color{MidnightBlue}
+
+Llamamos $\ Q=-6\phi_1^2-6\phi_2^2-6\phi_3^2-\sqrt{2}\phi_1\phi_2	-\sqrt{2}\phi_2\phi_3$
+
+Matricialmente, $\quad Q=\phi^T A \phi =\mqty(\phi_1&\phi_2&\phi_3) \mqty(-6 &-\sqrt{2}/2 &0 \\ -\sqrt{2}/2&-6&-\sqrt{2}/2 \\ 0 & -\sqrt{2}/2&-6 ) \mqty(\phi_1 \\ \phi_2 \\ \phi_3)$
+
+$A=\mqty(-6 &-\sqrt{2}/2 &0 \\ -\sqrt{2}/2&-6&-\sqrt{2}/2 \\ 0 & -\sqrt{2}/2&-6 ) $
+
+$ \det(A-\lambda I)= 
+\mqty| 6+\lambda & \sqrt{2}/2 & 0 \\  \sqrt{2}/2 & 6+\lambda &  \sqrt{2}/2 \\ 0& \sqrt{2}/2&6+\lambda |=(6+\lambda)(\lambda^2+12\lambda+35)=0  \ \to \ \begin{cases}  \ \lambda_1=-5 \\ \ \lambda_2=-6 \\ \ \lambda_3=-7 \end{cases}$
+
+
+$\triangleright \quad 	\boldsymbol{ \lambda_1=-5 } \ \to \ A \vec v_1 = -5 \vec v_1 \ \to \ \mqty(-6 &-\sqrt{2}/2 &0 \\ -\sqrt{2}/2&-6&-\sqrt{2}/2 \\ 0 & -\sqrt{2}/2&-6 ) \mqty( \psi_1 \\ \psi_2 \\ \psi_3) = -5 \mqty( \psi_1 \\ \psi_2 \\ \psi_3) $
+
+
+$ \begin{cases} \ \psi_1+(\sqrt{2}/2) \psi_2 &=0 \\ \ (\sqrt{2}/2)\psi_1+\psi_2+(\sqrt{2}/2)\psi_3&=0 \\ \ (\sqrt{2}/2)\psi_2+\psi_3&=0 \end{cases} \qquad \text{tomando } \ \psi_2=1 \ \to \begin{cases} \ \psi_1=-\sqrt{2}/2 \\ \ \psi_3=-\sqrt{2}/2 \end{cases}$
+
+
+$\vec v_1=\mqty(-\sqrt{2}/2 \\1\\ -\sqrt{2}/2) \ \to \ |\vec v_1|=\sqrt{\dfrac 1 2 + 1 +\dfrac 1 2}=\sqrt{2} \quad \Rightarrow \quad \boldsymbol{\vec v_2=}\dfrac{1}{\sqrt{2}} \mqty( -\sqrt{2}/2 \\ 1 \\ -\sqrt{2}/2) \boldsymbol{ =\mqty(-1/2 \\ \sqrt{2}/2 \\ -1/2) }$
+
+
+
+$\triangleright \quad 	\boldsymbol{ \lambda_2=-6 } \ \to \ A \vec v_2 = -6 \vec v_2 \ \to \ \mqty(-6 &-\sqrt{2}/2 &0 \\ -\sqrt{2}/2&-6&-\sqrt{2}/2 \\ 0 & -\sqrt{2}/2&-6 ) \mqty( \psi_1 \\ \psi_2 \\ \psi_3) = -6 \mqty( \psi_1 \\ \psi_2 \\ \psi_3) $
+
+$\begin{cases} \ (\sqrt{2}/2) \psi_2&=0 \\ (\sqrt{2}/2)\psi_2+(\sqrt{2}/2)\phi_2&=0   \\ \ (\sqrt{2}/2)\psi_2&=0 \end{cases} \quad\to \quad \begin{cases}\ \psi_2=0 \\ \ \psi_1+\psi_3=0 \end{cases} $
+
+$\vec v_2= \mqty(-1\\0\\1) \ \to \ |\vec v_2|=\sqrt{1+2}=\sqrt{2}  \quad \Rightarrow \quad \boldsymbol{\vec v_2 = \dfrac 1{\sqrt{2}} \mqty(-1\\0\\1)}$
+
+
+
+$\triangleright \quad 	\boldsymbol{ \lambda_3=-7 } \ \to \ A \vec v_2 = -7 \vec v_3 \ \to \ \mqty(-6 &-\sqrt{2}/2 &0 \\ -\sqrt{2}/2&-6&-\sqrt{2}/2 \\ 0 & -\sqrt{2}/2&-6 ) \mqty( \psi_1 \\ \psi_2 \\ \psi_3) = -7 \mqty( \psi_1 \\ \psi_2 \\ \psi_3) $
+
+	
+$\begin{cases} \ \phi_1-(\sqrt{2}/2) \psi_2&=0 \\ -(\sqrt{2}/2)\psi_1+\psi_2-(\sqrt{2}/2)\phi_3&=0   \\ \ -(\sqrt{2}/2)\psi_2+\phi_3&=0 \end{cases} \quad\to \quad  \text{tomando } \ \psi_2=1 \ \to \ \begin{cases} \ \psi_1=\sqrt{2}/2 \\ \ \phi_3=\sqrt{2}/2\end{cases}$
+
+
+$\vec v_3=\mqty( \sqrt{2}/2 \\ 1 \\ \sqrt{2}/2) \ \to \ |\vec v_3|=\sqrt{\dfrac 1 2 + 1 \dfrac 1 2 }=\sqrt{2} \quad \Rightarrow \quad \boldsymbol{\vec v_3=} \dfrac 1{\sqrt{2}}\mqty( \sqrt{2}/2 \\ 1 \\ \sqrt{2}/2) \boldsymbol{=\mqty(1/2\\ \sqrt{2}/2 \\1/2)}$
+
+Es fácil comprobar que los tres vectores propios son mutuamente ortogonales, $\ \vec v_1 \cdot \vec v_2=\vec v_2 \cdot \vec v_3=\vec v_3 \cdot \vec v_1=0$
+
+La matriz de los valores propios, matriz del cambio de base, es:
+
+$\boldsymbol{M \ = \ 
+\mqty(
+-1/2 & -\sqrt{2}/2 & 1/2 \\
+\sqrt{2}/2 & 0 & \sqrt{2}/2 \\
+-1/2 & \sqrt{2}/2 & 1/2
+)
+\ = \ \dfrac 1 2 \, \mqty( -1&-\sqrt 2 & 1 \\ \sqrt 2 & 0 & \sqrt 2 \\ -1 & \sqrt 2 & 1 ) }$
+
+También es fácil comprobar que $\ |M|>0$
+
+El cambio de base es $\ \mqty(\phi_1\\ \phi2 \\ \phi_3)= \dfrac 1 2 \, \mqty( -1&-\sqrt 2 & 1 \\ \sqrt 2 & 0 & \sqrt 2 \\ -1 & \sqrt 2 & 1 ) \mqty(\psi_1\\ \psi2 \\ \psi_3) \ \to \ \begin{cases} \ \phi_1=-\dfrac 1 2 \psi_1 - \dfrac{\sqrt{2}}{2} \psi_2 + \dfrac 1 2 \psi_3 \\ \ \phi_2=\dfrac{\sqrt{2}}{2} \psi_1+\dfrac{\sqrt{2}}{2}\psi_3 \\ \ \phi_3= -\dfrac 1 2 \psi_1 + \dfrac{\sqrt{2}}{2} \psi_2+\dfrac 1 2 \psi_3 \end{cases}$
+
+Con este cambio de base (se puede comprobar) desaparecen los productos cruzados de $Q$ siendo los coeficientes de $\ \psi_1^2,\ \psi_2^2 \ \text{ y } \ \psi_3^2 \ $ los valores propios $\lambda_1=-5,\ \lambda_2=-6 \ \text{ y } \ \lambda_3=-7$, es decir,
+
+$$\boldsymbol{ Q \ = \ -6\phi_1^2-6\phi_2^2-6\phi_3^2-\sqrt{2}\phi_1\phi_2	-\sqrt{2}\phi_2\phi_3 \ = \ -5\psi_1^2-6\psi_2^2-7\psi_3^2}$$
+
+
+\color{black}
+
+
+
+\section[Otra aplicación de la diagonalización de matrices: potencias de matrices]{Otra aplicación de la diagonalización de matrices: potencias de matrices\sectionmark{Potencias de una matriz}}
+	\sectionmark{Potencias de una matriz}
+\vspace{-5mm}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.1);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.1);
+	\end{tikzpicture}
+
+\begin{myexampleblock} {Potencias de matrices diagonalizables (cadenas de Markov)}
+	
+\vspace{2mm}	Si $A$ es diagonalizable $\ \to \ A=MDM^T=MDM^{-1}\ (M^{-1}=M^T)\ $ y entonces,
+	
+\vspace{2mm}	$A^2=AA=(MDM^{-1})(MDM^{-1})=MD(M^{-1}M)DM^{-1}=MDIDM^{-1}=MDDM^{-1}=MD^2M^T\, . \ $ Es sencillo comprobar que $A^3=MD^3M^T$ y, por inducción demostrar que:
+	
+\vspace{2mm}	Si $\ A \text{ diagonalizable } \ \Rightarrow \ A^n\ = \ M \, D^n\, M^T $
+	
+\vspace{2mm} Siendo sencillísimo calcular $D^n$, pues $D^n=\left( \text{diag} (\lambda_i) \right)^n=\text{diag} (\lambda_i^n) $
+\vspace{2mm}	
+	
+\end{myexampleblock}
+
+**** Capítulo 11 de \emph{`Mecánica Teórica'}, \textsf{Ignacio Vallés}. \textcolor{NavyBlue}{https://igvaori.github.io}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+**** Capítulo 8 de \emph{`Álgebra lineal y geometría (avanzadas) para bachillerato'}, 
+\textsf{Ignacio Vallés}. 
+\textcolor{NavyBlue}{https://igvaori.github.io}
+
+\section{Valores y vectores propios}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.1);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.1);
+	\end{tikzpicture}
+
+Los conceptos de valores y vectores propios cuestan un poco de entender, veamos su definitionnición.
+
+\begin{definition}
+
+Los \textbf{`vectores propios o autovectores'} son los vectores no nulos de una aplicación lineal\footnote{$\ \ $ En matemáticas, una aplicación lineal es una aplicación entre dos espacios vectoriales que preserva las operaciones de adición de vectores y multiplicación por un escalar.} que, cuando son transformados por ella, dan lugar a un múltiplo escalar de ellos (no cambian de dirección). Este escalar el el \textbf{`valor propio o autovalor'}:
+
+\vspace{4mm}\centerline{\colorbox{LightYellow}{$\boldsymbol{\; A\; \vec v = \lambda \; \vec v  \;,}$}}
+
+\justify
+donde $A$ es la matriz de la aplicación lineal, $\vec v$ es el vector propio y $\lambda$ el valor propio o característico. Hay quien usa la raíz alemana y habla de `eigen-valores' y `eigen-vectores'.
+
+\end{definition}
+
+Para el cálculo de los valores y vectores propios de una matriz (aplicación lineal) se sigue el siguiente \emph{`algoritmo'}:
+
+\begin{cuadro-naranja}
+
+
+$\triangleright \quad$ Calcular la `ecuación característica': $\quad det(A-\lambda I)$
+
+$\triangleright \quad$  Encontrar las raíces del `polinomio característico' obtenido: 
+$ \qquad det(A-\lambda I)=0 \longrightarrow \lambda_i$. Estos son los valores propios.
+
+$\triangleright \quad$  Calcular el vector propio correspondiente a cada uno de los valores propios obtenidos en el paso anterior:	
+$\qquad A\vec v=\lambda \vec v \to (A-\lambda  I)\vec v=\vec 0$
+
+\end{cuadro-naranja}
+
+Para el cálculo de los valores y vectores propios de una matriz también es conveniente tener en cuenta los siguientes `trucos' \textcolor{gris}{(proposiciones que no vamos a demostrar)}.
+
+\begin{itemize}
+\item La traza de una matriz A (suma de los elementos de su diagonal principal)	coincide con la suma de los autovalores o valores propios:
+
+$\displaystyle tr(A)=\textcolor{gris}{\sum_{i=1}^n a_{ii}}=\sum_{i=1}^n \lambda_i$
+
+\item El producto de todos los valores propios coincide con el determinante de la matriz.
+
+$\displaystyle det(A)=\prod_{i=1}^n \lambda_i$
+
+\item Si hay una combinación lineal en filas o columnas de $A$, entonces un valor propio, al menos, de la matriz es cero.
+\end{itemize}
+
+\begin{cuadro-gris}
+Dada $A=\left( \begin{matrix} 1&0\\5&2 \end{matrix} \right)$, encuentra sus autovalores y autovectores.
+
+$det(A-\lambda I)=\left| \begin{matrix} 1-\lambda&0\\5&2-\lambda \end{matrix} \right|=\lambda^2-3\lambda+2=0 \longrightarrow \lambda =1 \; \wedge \; \lambda=2$
+
+--- $\lambda =1 \longrightarrow (A-\lambda I)\vec v=\vec 0 \to (A-I)\vec v=\vec 0\to (A-I)\left( \begin{matrix} x\\y \end{matrix} \right) = \left( \begin{matrix} 0\\0 \end{matrix} \right)$ 
+
+\noindent \small{$\left( \begin{matrix} 0&0\\5&1 \end{matrix} \right)\left( \begin{matrix} x\\y \end{matrix} \right) = \left( \begin{matrix} 0\\0 \end{matrix} \right) \to \begin{cases} 0x+0y=0\\5x+y=0 \end{cases} \to y=-5x \Rightarrow (x=1)\; 
+\vec v=\left( \begin{matrix} 1\\-5 \end{matrix} \right)$}\normalsize{.}
+
+
+--- $\lambda =2 \longrightarrow (A-\lambda I)\vec v=\vec 0 \to (A-2I)\vec v=\vec 0\to (A-2I)\left( \begin{matrix} x\\y \end{matrix} \right) = \left( \begin{matrix} 0\\0 \end{matrix} \right)$	
+
+\noindent \small{ $\left( \begin{matrix} -1&0\\5&0 \end{matrix} \right)\left( \begin{matrix} x\\y \end{matrix} \right) = \left( \begin{matrix} 0\\0 \end{matrix} \right) \to \begin{cases} -x+0y=0\\5x+0y=0 \end{cases} \to x=0 \Rightarrow (y=1)\; 
+\vec v=\left( \begin{matrix} 0\\1 \end{matrix} \right)$}\normalsize{.}
+
+Conclusión, los valores propios y sus correspondientes valores propios de la matriz A son:
+
+$\lambda=1 \leftrightarrow \vec v=\left( \begin{matrix} 1\\-5 \end{matrix} \right)
+\quad; \qquad \qquad  
+\lambda = 2 \leftrightarrow \vec v=\left( \begin{matrix} 0\\1 \end{matrix} \right)$
+\end{cuadro-gris}
+
+
+\section{Diagonalización de matrices}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.1);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.1);
+	\end{tikzpicture}
+
+\begin{definition}
+
+Una \textbf{matriz diagonalizable} es una matriz cuadrada que se puede transformar en una matriz diagonal.	
+
+La diagonalización de las matrices es del siguiente modo:
+
+\vspace{4mm} \centerline{\colorbox{LightYellow}{$\boxed{ \; \boldsymbol{A=PDP^{-1} \quad \leftrightarrow \quad D=P^{-1}AP}\; }$ ,}}
+
+\justify
+
+donde $A$ es la matriz a diagonalizar, $P$ es la matriz formada por los vectores propios de $A$ escritos como columnas, $P^{-1}$ es la matriz inversa de $P$ y $D$ es la matriz diagonalizada, cuyos elementos de la diagonal principal son los autovalores de $A$. \textcolor{gris}{La matriz $P$ actúa como una matriz de cambio de base, por lo que, en realidad, con esta fórmula estamos cambiando la matriz $A$ a una nueva base en que se convierte en diagonal $D$. Evidentemente, $P$ es una matriz regular o invertible.} 
+\end{definition}
+
+No todas las matrices son diagonalizables, tan solo se pueden diagonalizar las matrices que cumplen con unas ciertas características. Se puede saber si una matriz es diagonalizable de distintas maneras:
+
+\begin{itemize}
+
+\item Una matriz cuadrada de orden $n$ es diagonalizable si tiene $n$ vectores propios (o autovectores) linealmente independientes, o dicho de otra forma, si estos vectores forman una base. Eso es debido a que la matriz $P$, que sirve para diagonalizar la matriz dada $A$, está formada por los vectores propios de dicha matriz $A$. Para saber si los autovectores son LI, basta con que el determinante de la matriz $P$ sea diferente de $0$, cosa que significa que la matriz es de rango máximo. $\quad$ \emph{Si $det(P)\neq 0 \to $ matriz diagonalizable.}
+\item Una propiedad de los valores y vectores propios es que los autovectores de autovalores diferentes son linealmente independientes. Por lo tanto, si todos los autovalores de la matriz son únicos (todos tienen multiplicidad uno)  la matriz es diagonalizable.
+\item Finalmente, existe un teorema, el \emph{`teorema espectral'}, que garantiza la diagonalización de las matrices simétricas con números reales. Es decir, \emph{toda matriz real y simétrica es diagonalizable}.
+	
+\end{itemize}
+
+Para diagonalizar  una matriz (aplicación lineal) $A$ se sigue el siguiente \emph{`algoritmo'}:
+
+\begin{enumerate}
+\item Obtener los valores ($\lambda_i$)y vectores propios ($\vec v_i$) de $A$
+\item Construir la matriz $P$ formada los los vectores-columna propios de $A$
+\item Verificar que $A$ es digonalizable, está en alguno de los supuestos anteriores.
+\item Construir la matriz $D$ en que todos sus elementos son cero excepto los de la diagonal principal, que son los valores propios de $A$:
+
+$D=(d_{ij})=\begin{cases} \lambda_i & \text{ si } i=j \\
+0 & \text{ si } i \neq j \end{cases}$	
+\end{enumerate}
+
+NOTA: Los vectores propios en $P$ se pueden escribir en cualquier orden, pero entonces, hay que respetar ese mismo orden al escribir los valores propios en $D$: 
+
+$P=\left( \vec v_1 \; | \; \vec v_2 \; | \; \cdots \; | \; \vec v_n \right) \longrightarrow D=\left( \begin{matrix} \lambda_1 &0&\cdots &0 \\ 0&\lambda_2&\cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0&0&\cdots & \lambda_n \end{matrix} \right)$
+
+\begin{theorem}{Aplicaciones de las matrices diagonalizables}
+Al estar las matrices diagonales llenas de ceros el cálculo se simplifica muchísimo. Un ejemplo claro de ellos son las `potencias' de las matrices cuadradas:
+
+\vspace{4mm} \centerline{\colorbox{LightYellow}{$\; A^k=PD^kP^{-1} \; , \qquad D^k=diag(\lambda_1^k, \lambda_2^k, \cdots, \lambda_n^k)\; $	}}
+\end{theorem}
+
+
+\textcolor{gris}{\noindent $A^2=A\cdot A = (PDP^{-1})\cdot  (PDP^{-1})= PD\; P^{-1} P\; DP^{-1}=  PDIDP^{-1}=PD^2P$}
+
+\noindent \textcolor{gris}{\noindent $A^3=A^2\cdot A= (PD^2P^{-1})\cdot (PDP^{-1})=PD^2\;P^{-1})P\; DP^{-1}=PD^2IDP^{-1}=PD^3P$}
+
+\noindent \textcolor{gris}{\noindent . . . . . . . . . . . . . . . .}
+
+\noindent \textcolor{gris}{\noindent Conjeturamos: $A^k=PD^kP$, necesitaría de una demostración por inducción que de le deja al lector.}$\qquad \qquad \Box$
+	
+
+	
+
+
+
+\begin{ejem}
+Diagonaliza la matriz $A=\left( \begin{matrix} 2&2\\1&3 \end{matrix} \right)$
+
+$|A-\lambda I|=\left| \begin{matrix} 2-\lambda&2\\1&3-\lambda \end{matrix}  \right|=\lambda^2-5\lambda +4=0 \leftrightarrow \lambda_1=1; \; \wedge \; \lambda_2=4	$
+
+--- $ \lambda=1 \to (A-I)\vec v= \vec 0 \to \left( \begin{matrix} 1&2\\1&2 \end{matrix} \right)\; \left( \begin{matrix} x\\y \end{matrix} \right)=
+\left( \begin{matrix} 0\\0 \end{matrix} \right)$
+
+$\begin{cases} x+2y=0\\x+2y=0 \end{cases} \to x=-2y \Rightarrow \vec v_1=\left( \begin{matrix} -2\\1 \end{matrix} \right)$
+
+--- $ \lambda=4 \to (A-4I)\vec v= \vec 0 \to \left( \begin{matrix} -2&2\\1&-1 \end{matrix} \right)\; \left( \begin{matrix} x\\y \end{matrix} \right)=
+\left( \begin{matrix} 0\\0 \end{matrix} \right)$
+
+$\begin{cases} -x+2y=0\\x-y=0 \end{cases} \to x=y \Rightarrow \vec v_2=\left( \begin{matrix} 1\\1 \end{matrix} \right)$
+
+Por lo que: $\quad P=\left( \begin{matrix} -2&1\\1&1 \end{matrix} \right) \quad , \qquad \qquad 
+D=\left( \begin{matrix} 1&0\\0&4 \end{matrix} \right) $
+
+\noindent \footnotesize{\textcolor{gris}{Compruébese que $D=P^{-1}AP \to  \left( \begin{matrix} 1&0\\0&4 \end{matrix} \right)=\left( \begin{matrix} -2&1\\1&1 \end{matrix} \right)^{-1} \cdot 
+\left( \begin{matrix} 2&2\\1&3 \end{matrix} \right) \cdot 
+\left( \begin{matrix} -2&1\\1&1 \end{matrix} \right)$ }}\normalsize{.}
+
+\noindent \footnotesize{\textcolor{gris}{Así como que $A^4=PD^4P^{-1}=\left( \begin{matrix} 86&170\\85&171 \end{matrix} \right), \; con \; D^4=\left( \begin{matrix} 1^4&0\\0&4^4 \end{matrix} \right)=\left( \begin{matrix} 1&0\\0&256 \end{matrix} \right)$  }}\normalsize{.}
+
+
+\end{ejem}
+
+
+
+
+
+
+
+\section{Ejercicios resueltos}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.1);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.1);
+	\end{tikzpicture}
+
+\begin{miejercicio}.
+
+Encuentra los autovalores y autovectores de $A=\left( \begin{matrix} 1&2&0\\2&1&0\\0&1&2 \end{matrix} \right)$	
+\end{miejercicio}
+
+
+	$|A-\lambda I|=\left| \begin{matrix} 1-\lambda &2&0 \\2&1-\lambda &0 \\0&1&2-\lambda \end{matrix} \right|=-\lambda^3+4\lambda^2-\lambda -6=$
+	
+\noindent $= -(\lambda-2)(\lambda-3)(\lambda+1)=0 \to \lambda=-1; \; \lambda=2;\; \lambda=3$
+
+\noindent --- $\lambda=-1:\; (A+I)\vec v =\vec 0 \to \left( \begin{matrix} 2&2&0\\2&2&0\\0&1&3 \end{matrix} \right) \; \left( \begin{matrix} x\\y\\z \end{matrix} \right)=\left( \begin{matrix} 0\\0\\0 \end{matrix} \right)$
+
+\noindent $\begin{cases} 2x+2y=0\\2x+2y=0\\y+3z=0 \end{cases} \to x=-y \; y=-3z \to \vec v_{-1}= \left( \begin{matrix} 3\\-3\\1 \end{matrix} \right)$
+
+
+\noindent --- $\lambda=2:\; (A-2I)\vec v =\vec 0 \to \left( \begin{matrix} -1&2&0\\2&-1&0\\0&1&0 \end{matrix} \right) \; \left( \begin{matrix} x\\y\\z \end{matrix} \right)=\left( \begin{matrix} 0\\0\\0 \end{matrix} \right)$
+
+\noindent $\begin{cases} -x+2y=0\\2x-y=0\\y=0 \end{cases} \to x=y=0 \to \vec v_{2}= \left( \begin{matrix} 0\\0\\1  \end{matrix} \right)$
+
+
+\noindent --- $\lambda=3:\; (A-3I)\vec v =\vec 0 \to \left( \begin{matrix} -2&2&0\\2&-3&0\\0&1&-1 \end{matrix} \right) \; \left( \begin{matrix} x\\y\\z \end{matrix} \right)=\left( \begin{matrix} 0\\0\\0 \end{matrix} \right)$
+
+\noindent $\begin{cases} -2x+2y=0\\2x-2y=0\\y-z=0 \end{cases} \to x0y=z \to \vec v_{3}= \left( \begin{matrix} 1\\1\\1 \end{matrix} \right)$$\qquad \qquad \Box$
+
+
+
+
+\begin{miejercicio}.
+
+	$A=\left( \begin{matrix} 1&0&-1&0\\2&-1&-3&0\\-2&0&2&0\\0&0&0&3 \end{matrix} \right)$. Encuentra sus autovalores y autovectores
+\end{miejercicio}
+
+
+	$|A-\lambda I|=0 \leftrightarrow \lambda =0,\; \lambda =-1, \; \lambda=3 \; \text{, raíz doble }$
+	
+\noindent --- $\lambda = 0 \to (A-0I)\vec v=\vec 0 \to x=-y=z; \; t=0 \to \vec v_{0}= \left( \begin{matrix} 1\\-1\\1\\0 \end{matrix} \right)$
+
+\noindent --- $\lambda = -1 \to (A+I)\vec v=\vec 0 \to x=z=0; \; t=0 \to \vec v_{-2}= \left( \begin{matrix} 0\\1\\0\\0 \end{matrix} \right)$
+
+\noindent --- $\lambda = 3 \to (A-3I)\vec v=\vec 0 \to y=2x; \; z=-2x \to $
+
+\noindent Autovalor doble, dos autovectores: $\vec v_{3_1}= \left( \begin{matrix} 1\\2\\-2\\0 \end{matrix} \right)\;; \; \;\;  \vec v_{3_2}= \left( \begin{matrix} 0\\0\\0\\1 \end{matrix} \right)$$\qquad \qquad \Box$
+
+
+
+\begin{miejercicio}
+	Diagonaliza $A=\left(\begin{matrix} 2&0&2\\-1&2&1\\0&1&4  \end{matrix}\right)$
+\end{miejercicio}
+
+
+
+\noindent \small{$ \lambda_1=1 \longrightarrow \vec v_1=\left( \begin{matrix} -2\\-3\\1 \end{matrix}\right); \; \lambda_2=3 \longrightarrow \vec v_2=\left( \begin{matrix} 2\\-1\\1 \end{matrix}\right); \;\lambda_3=4 \longrightarrow \vec v_3=\left( \begin{matrix} 1\\0\\0 \end{matrix}\right)$}\normalsize{.}
+
+$P=\left(\begin{matrix} -2&2&1\\-3&1&0\\1&1&1  \end{matrix}\right); \qquad D=\left(\begin{matrix} 1&0&0\\0&3&0\\0&0&4  \end{matrix}\right)$$\qquad \qquad \Box$
+
+
+	
+\begin{miejercicio}
+	Diagonaliza $A=\left(\begin{matrix} -1&3&1\\0&2&0\\3&-1&1  \end{matrix}\right)$
+\end{miejercicio}
+
+
+
+\noindent \small{$ \lambda_1=-2 \longrightarrow \vec v_1=\left( \begin{matrix} 1\\0\\1 \end{matrix}\right); \; \lambda_2=-2 \text { doble } \longrightarrow \vec v_{2_1}=\left( \begin{matrix} 1\\0\\3 \end{matrix}\right); \;\vec v_{2_2}=\left( \begin{matrix} -1\\0\\-3 \end{matrix}\right)$}\normalsize{.}
+
+$P=\left(\begin{matrix} 1&1&-1\\0&0&0\\-1&3&-3  \end{matrix}\right);\; \; |P|=0 \longrightarrow \, \nexists D$. La matriz A no es diagonalizable.$\qquad \qquad \Box$
+	
+
+
+\begin{miejercicio}
+	Diagonaliza $A=\left(\begin{matrix} 3&0&0\\0&2&1\\0&1&2  \end{matrix}\right)$
+\end{miejercicio}
+
+
+
+\noindent \small{$ \lambda_1=1 \longrightarrow \vec v_1=\left( \begin{matrix} 0\\-1\\1 \end{matrix}\right); \; \lambda_2=3 \text { doble } \longrightarrow \vec v_{2_1}=\left( \begin{matrix} 0\\1\\1 \end{matrix}\right); \;\vec v_{2_2}=\left( \begin{matrix} 1\\0\\0 \end{matrix}\right)$}\normalsize{.}
+
+$P=\left(\begin{matrix} 0&0&1\\1&-1&0\\-1&1&0  \end{matrix}\right); \qquad D=\left(\begin{matrix} 1&0&0\\0&3&0\\0&0&3  \end{matrix}\right)$$\qquad \qquad \Box$
+	
+
+
+\begin{miejercicio}
+	Diagonaliza $A=\left(\begin{matrix} 2&1&2&0\\1&-3&1&0\\0&-1&0&0\\0&0&0&5 \end{matrix}\right)$
+
+\end{miejercicio}
+
+
+
+\noindent $ \lambda_1=0 \longrightarrow \vec v_1=\left( \begin{matrix} -1\\0\\1\\0 \end{matrix}\right); \; \lambda_2=-3 \longrightarrow \vec v_2=\left( \begin{matrix} -1\\3\\1\\0 \end{matrix}\right); \;$
+
+\noindent $\lambda_3=2 \longrightarrow \vec v_3=\left( \begin{matrix} -1\\2\\1\\0 \end{matrix}\right); \; \lambda_4=5 \longrightarrow \vec v_4=\left( \begin{matrix} 0\\0\\0\\1 \end{matrix}\right)$
+
+$P=\left(\begin{matrix} -1&-1&-1&0\\0&3&2&0\\-1&2&1&0 \\ 0&0&0&1  \end{matrix}\right); \qquad D=\left(\begin{matrix} 1&0&0&0\\0&-3&0&0\\0&0&2&0\\0&0&0&5  \end{matrix}\right)$$\qquad \qquad \Box$
+	
+
+
+\begin{miejercicio}
+	Sea $A=\left( \begin{matrix} 2&0\\3&1 \end{matrix} \right)$. Diagonalizala la matriz y calcula $A^{10}$
+\end{miejercicio}
+
+
+
+$A=\left( \begin{matrix} 2&0\\3&1 \end{matrix} \right); \quad P=\left( \begin{matrix} 0&1\\1&3 \end{matrix} \right) ; \quad D=\left( \begin{matrix} 1&0\\0&2 \end{matrix} \right)$
+
+$A^{10}=PD^{10}P^{-1}=\left( \begin{matrix} 0&1\\1&3 \end{matrix} \right) \cdot \left( \begin{matrix} 1&0\\0&2 \end{matrix} \right)^{10}\cdot \left( \begin{matrix} 0&1\\1&3 \end{matrix} \right)^{-1}=$
+
+\noindent $=\left( \begin{matrix} 0&1\\1&3 \end{matrix} \right) \cdot \left( \begin{matrix} 1^{10}&0\\0&2^{10} \end{matrix} \right)\cdot \left( \begin{matrix} 0&1\\1&3 \end{matrix} \right)^{-1}=
+\left( \begin{matrix} 0&1\\1&3 \end{matrix} \right) \cdot \left( \begin{matrix} 1&0\\0&1024 \end{matrix} \right)^{10}\cdot \left( \begin{matrix} 0&1\\1&3 \end{matrix} \right)^{-1}=\left( \begin{matrix} 1024&0\\3069&1 \end{matrix} \right)$$\qquad \qquad \Box$
+	
+
+\vspace{1cm}
+
+\begin{myexampleblock}{Un poco de historia}
+Los valores y vectores propios pertenecen a los temas de mayor utilidad del álgebra lineal. Se usan en varias áreas de las matemáticas, física, mecánica, ingeniería eléctrica y nuclear, hidrodinámica, aerodinámica, etc. De hecho, es raro encontrar un área de la ciencia aplicada donde nunca se hayan usado. 
+
+\vspace {2mm} Puede parecer muy extraño, pero los valores propios de las matrices aparecieron publicados antes que las matrices. Esto se debe al hecho insólito de que, parafraseando a Cailey, la teoría de las matrices estaba bien desarrollada (a través de la teoría de los determinantes) antes de que siquiera se definitionnieran las matrices.  
+
+\vspace {2mm}  En la década de 1760, Lagrange estudió un sistema de seis ecuaciones diferenciales del movimiento de los planetas y de ahí dedujo una ecuación polinomial de sexto grado, cuyas raíces eran los valores propios de una matriz $6 \times 6$. 
+
+\vspace {2mm} Fue Cauchy quien, en 1840, usó por primera vez los términos valores característicos y ecuación característica para indicar los valores propios y la ecuación polinomial básica que éstos satisfacen. Aplicó sus descubrimientos a la teoría del movimiento planetario.	
+
+\vspace {2mm} Pero, ¿cuál es la utilidad de los valores y vectores propios?: son muy útiles en la `diagonalización de matrices'.
+
+\vspace {2mm} ¿Y para qué sirve diagonalizar matrices?: una de las utilidades más notables está en el cálculo de las potencias de las matrices cuadradas, si la matriz es diagonal, su potencia enésima también es diagonal siendo sus elementos los de la matriz elevado a $k$ \textcolor{gris}{$D=(a_{ii})_{diag} 	\; \to \; D^k=(a^k_{ii})_{diag}$}
+\end{myexampleblock}
+
+
+
+
+\begin{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%. SECCIONES
+\chapter{texto}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (6.5,.2);
+	\fill [left color=teal!50, right color=blue!50] (6.5,0) rectangle (11.5,.2);
+	\end{tikzpicture}
+
+\vspace{1cm}
+\section{texto}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.1);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.1);
+	\end{tikzpicture}
+\vspace{0.5cm}
+
+\subsection{texto}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.01);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.01);
+	\end{tikzpicture}
+\vspace{0.5cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%. \begin{ ------>. 
+detsacado;  cuadro-naranja;  cuadro-gris;  miejercicio (solución extensa);  mipropuesto (solución corta y fuera del cuadro)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%. CURIOSIDAD
+\vspace{1cm}
+\color{ForestGreen!80}
+\rule{250pt}{0.2pt}
+Texto
+\vspace{-8mm}
+\begin{flushright}
+\rule{250pt}{0.2pt}		
+\end{flushright}	
+\color{black}
+\end{comment}

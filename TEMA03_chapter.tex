@@ -1,0 +1,370 @@
+\chapter{La integral en física}
+\setlength{\parindent}{0cm}
+
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (6.5,.2);
+	\fill [left color=teal!50, right color=blue!50] (6.5,0) rectangle (11.5,.2);
+	\end{tikzpicture}
+\begin{comment}
+\vspace{1cm}
+\section{Uno.Uno}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.1);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.1);
+	\end{tikzpicture}
+\vspace{0.5cm}
+
+\vspace{1cm}
+\subsection{Uno.Uno.Uno}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.01);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.01);
+	\end{tikzpicture}
+\vspace{0.5cm}
+
+\end{comment}\vspace{1cm}
+\section{Integrales en física}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.1);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.1);
+	\end{tikzpicture}
+\vspace{0.5cm}
+
+\subrayado{\emph{``Una \textbf{integral} en física es la suma de muchas cosas muy pequeñas''}.}
+
+\begin{multicols}{2}
+$\quad$
+
+El espacio recorrido por una partícula que viaja con una velocidad que depende del tiempo $v(t)$, desde un tiempo $0$ hasta un tiempo $\tau$ lo podemos calcular dividiendo el intervalo $[0,\tau]$ en pequeños intervalos de amplitud $\Delta x$ en los que podemos suponer, en cada uno de ellos, que la velocidad es constante $v_i(t)$, así, para el desplazamiento en el intervalo i-ésimo tendremos: $\ \Delta x_i=v_i(t)\, \Delta t\ $ y en todo el intervalo:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.4\textwidth]{imagenes/T02IM02.png}
+\end{figure}
+\end{multicols}
+
+$\displaystyle \Delta x=\Delta x_1+ \Delta x_2+ \cdots = \sum_{t=0}^\tau v_i(t)\, \Delta t \quad $ aproximación que será mejor cuanto menor sea $	\Delta t$
+
+Cuando $ \ \displaystyle  \Delta t  << 1 \quad \to  \quad \Delta t \sim \dd t \to 0 \qquad \Rightarrow \qquad \Delta x \ = \ \int_0^\tau  v(t)\, \dd t$
+
+
+Si $\ x(t)\ $ es una primitiva de $\ v(t)\, , \ \ \displaystyle \dv{x(t)}{t}=v(t) \quad \to \quad \displaystyle \Delta x=  \int_0^\tau  v(t)\, \dd t = \left[\,  x(t) \, \right]_0^\tau=x(\tau)-x(0) \quad$ (Barrow).
+
+Ecuación que se puede escribir como $\quad\displaystyle x(t)\ = \ x(0) \ + \ \int_0^t  v(t')\, \dd t' \ $
+
+\textcolor{gris}{$\displaystyle \int_0^t  v(t')\, \dd t' =\int_0^t  v(x)\, \dd x =\int_0^t  v(z)\, \dd z\, ;  \quad t',\, x,\, z\ $ variables mudas. } 
+
+\vspace{5mm}\emph{En física todas las integrales son definidas.}
+
+\vspace{5mm}\ul{Ejemplos:}
+
+\hspace{1cm} \vspace{3mm} $\triangleright \displaystyle \quad \rho=\dv{m}{V} \ \to \ \dd m = \rho\, \dd V  \quad \Rightarrow \quad M=\int_M \dd m = \int_V \rho\, \dd V$
+
+\hspace{1cm} \vspace{3mm} $\triangleright \displaystyle \quad \overrightarrow E=\dv{\overrightarrow F}{q} \ \to \ \dd \overrightarrow F = \overrightarrow E \, \dd q \quad \Rightarrow \quad \overrightarrow F = \int_Q \overrightarrow E \, \dd q$
+
+\hspace{1cm} \vspace{3mm} $\triangleright \displaystyle \ \ \, \text{ Trabajo elemental: } \  \dd W = \overrightarrow F \cdot \dd \vec r \quad \Rightarrow \quad W=\int_A^B \overrightarrow F \cdot \dd \vec r$ 
+
+\vspace{5mm} Dimensionalmente, al ser la integral una suma, sus dimensiones serán el producto de las dimensiones del integrando por las del diferencial. $\quad$ \textcolor{gris}{$(\ [W]=[F][\dd r]=\mathrm N \, \mathrm m \ ) $ }
+
+\vspace{1cm}
+Se define el \textbf{valor medio de una función} en un intervalo [a,b]:
+\begin{multicols}{2}
+$\quad$
+
+$\qquad  <\, f(x)\,> \ = \ \displaystyle \dfrac 1 {b-a}\, \int_a^b f(x), \dd x $
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.4\textwidth]{imagenes/T02IM04.png}
+\end{figure}
+\end{multicols}
+
+Dada $\ \displaystyle \int_a^b f(x)\, \dd x \, , \ $ si alguno de los límites de integración en $\infty$ o bien la función diverge a $\infty$ en $]a,b[$, se dice que tenemos una \textbf{integral impropia}, que se estudia en el apéndice \ref{integrales-impropias}. 
+
+\vspace{10mm}
+
+\begin{miejercicio}
+	
+La función $\rho (x)=300 \left[ 2+\sin(4\sqrt{x+0.15}) \right]$ da la densidad de coches (en número de coches por $\mathrm{km}$) en los primeros $20\; \mathrm{km}$ de una autovía, siendo $x$ la distancia en $\mathrm{km}$ al comienzo de la misma. Calcula el número total de coches en ls $20 \; km$.  
+
+\rule{200pt}{0.1pt}
+
+\vspace{3mm}
+	
+	$\displaystyle \int_0^{20} \rho (x) \; \dd x= \int_0^{20} 300 \left [2+\sin(4\sqrt{x+0.15}) \right]   \; \dd x$
+	$\displaystyle = 600 \int_0^{20} \dd x + 300 \int_0^{20}  \sin (4\sqrt{x+0.15}) \; \dd x = 
+	CV:\; \left[ \begin{matrix} \sqrt { x+0.15 } =t \\ \dd x=2t\quad \dd t \end{matrix} \right] \to $
+	$ \; =\cdots\; $ (\textcolor{gris}{Acábese}) $ \cdots   =11513 \text{ coches } $
+\end{miejercicio}	
+	
+	
+\vspace{5mm}
+
+\begin{miejercicio}
+	
+Sobre una partícula situada a $x\; \mathrm{m}$ del origen, actúa una fuerza $F=(3x^2+2x)\; \mathrm{N}$. ?`Qué trabajo realiza dicha fuerza al mover la partícula desde la posición $x=1$ hasta $x=5\; \mathrm{m}$
+	
+\rule{200pt}{0.1pt}
+
+\vspace{3mm}
+	
+	Us resultado de física asegura que el trabajo $W$ que realiza un cuerpo sometido a una fuerza $F$ desde $x=x_1$ hasta $x= x=2$ es  $\; W=\displaystyle \int_{x_1}^{x_2} F \cdot \dd x $, luego:
+	
+	$W=\displaystyle \int_1^5 (3x^2+2x)\; \dd x = \eval[x^3+x^2|_1^5=(5^3+5^2)-(1+1)= 148\; \mathrm{J}$. 
+	
+	\vspace{2mm}\textcolor{gris}{$\mathrm{J}$ es la unidad física de trabajo, $\mathrm{N}\cdot \mathrm{m}$}
+
+\end{miejercicio}
+	
+	\vspace{5mm}
+
+\begin{miejercicio}
+
+Calcula la posición de un móvil sabiendo que se desplaza rectilineamente con a aceleración constante igual a $a=8 \; \mathrm{m}\cdot \mathrm{s}^{-2}$ y que su velocidad es $0\; \mathrm{m}\cdot \mathrm{s}^{-1}$ cuando $t=3 \; \mathrm{s}$ y que se encuentra en el origen de coordenadas a los $11 \; \mathrm{s}$
+	
+\rule{200pt}{0.1pt}
+
+\vspace{3mm}
+	
+	Sea $s(t)$ la posición del móvil a los $t\; \mathrm{s}$. Por física sabemos que: $ \displaystyle \  v(t)=s'(t)=\frac {\dd s(t)}{\dd t}\; $ y $\; a(t)=s''(t)=\dfrac {\dd^2 s(t)}{\dd t^2}=8\; \mathrm{m}\cdot \mathrm{s}^{-2}$
+	
+\vspace{2mm}	Calculemos la velocidad: $\ \ \displaystyle v(t)=\int a(t)\; \dd t = \int 8 \, \dd t =8t +\mathcal {C}_1\; $; como $v(3)=0=24+\mathcal {C}_1 \to  \mathcal {C}_1=-24 \Rightarrow v(t)=8t-24 \ (\mathrm{m}\, \mathrm{s}^-1)$
+	
+\vspace{2mm}	Calculemos, ahora, la posición: $\ \ \displaystyle s(t)=\int v(t)\; \dd t = \int (8t-24)\; \dd t = 4t^2 -24t +\mathcal {C}_2\; $; como $s(11)=0=220+\mathcal {C}_2 \to \mathcal{C}_2=-220 \Rightarrow s(t)=4t^2-24t-220 \ (\mathrm{m})$ 
+	
+\end{miejercicio}
+
+
+
+
+
+
+
+
+\section{Integrales impropias}	
+\label{integrales-impropias}
+
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (6.5,.2);
+	\fill [left color=teal!50, right color=blue!50] (6.5,0) rectangle (13.5,.2);
+	\end{tikzpicture}
+
+
+\vspace{1cm}
+
+
+El concepto de integral definida puede extenderse a límites de integración infinitos del siguiente modo:
+$\qquad \displaystyle \int_a^{+\infty} f(t)\; \dd t = \underset{x\to + \infty}{lim}\;{\int_a^x f(t)\; \dd t}$
+
+\begin{miejercicio}
+
+Calcula: $a) \quad \displaystyle \int_1^{+\infty} \dfrac {1}{t^2} \dd t\; ; \qquad \quad b) \quad \displaystyle \int_1^{+\infty} \dfrac 1 t \dd t $	
+
+$a)\quad \displaystyle \int_1^x \dfrac {1}{t^2} \dd t= \eval[-\dfrac{1}{x}|_1^x=-\dfrac 1 x + 1 \Rightarrow \; \;  \displaystyle \int_0^{+\infty} \dfrac {1}{t^2}\; \dd t = \underset{x\to + \infty}{lim}\;{-\dfrac 1 x + 1}=1$
+
+$b) \quad \displaystyle \int_1^x \dfrac 1 t \dd t = \eval[\mathrm{ln}\abs{x}|_1^x=\mathrm{ln}x-\cancelto{0}{\mathrm{ln}1}=\mathrm{ln}x \Rightarrow \;\; \displaystyle \int_1^{+\infty} \dfrac {1}{t}\; \dd t = \underset{x\to + \infty}{lim}\;{\mathrm{ln}x}=+\infty$
+
+\begin{figure}[H]
+ 	\centering
+	\includegraphics[width=1\textwidth]{imagenes/IMPROPIAS/T08IM10.png}
+\end{figure}
+
+\vspace{4mm} \end{miejercicio}
+
+\vspace{4mm} \textbf{Otras integrales impropias:}
+
+
+
+Si $f$ no está acotada en $[a,b]$ (discontinuidad asintótica o de salto infinito), en general, la $\displaystyle \int_a^b f(t) \dd t$ no existe. Sin embargo, en algunos casos, se puede proceder de forma análoga al caso anterior. Si por ejemplo $f$ presenta una discontinuidad de salto infinito en $c\in[a,b]$:
+
+$$\displaystyle \int_a^b f(t) \dd t= \underset {x\to c^-}{lim}{\int_a^x f(t) \dd t}-\underset {x\to c^+}{lim}{\int_x^b f(t) \dd t}$$
+
+
+\vspace{4mm} \begin{miejercicio}
+
+Calcula: $a) \quad \displaystyle \int_0^1 \dfrac {1}{\sqrt{t}} \dd t\; ; \qquad \quad b) \quad \displaystyle \int_0^1 \dfrac {1} {t^2} \dd t $	
+
+$a) \quad \displaystyle \int_0^1 \dfrac {1}{\sqrt{t}} \dd t= \underset {x\to 0^+}{lim}{\int_x^1 \dfrac {1}{\sqrt{t}} \dd t} =\underset {x\to 0^+}{lim} { \eval[2\sqrt{t}|_x^1 }= \underset {x\to 0^+}{lim} {2-2\sqrt{x}}=2$
+
+$b) \quad  \displaystyle \int_0^1 \dfrac {1} {t^2} \dd t = \underset {x\to 0^+}{lim}{\int_x^1 \dfrac {1}{t^2} \dd t}= \underset {x\to 0^+}{lim} { \eval[-\dfrac 1 t|_x^1 }=\underset {x\to 0^+}{lim} {\left(-1+\dfrac 1 x  \right)}=+\infty$
+
+\begin{figure}[H]
+ 	\centering
+	\includegraphics[width=0.75\textwidth]{imagenes/IMPROPIAS/T08IM11.png}
+\end{figure}
+
+\end{miejercicio}
+
+\vspace{4mm} Resumiendo:
+
+En cálculo, una integral impropia es el límite de una integral definida cuando uno o ambos extremos del intervalo de integración se acercan a un número NO real específico,  o a $\pm \infty$.
+Además una integral definida es impropia cuando la función integrando de la integral definida tiene discontinuidad infinita en el intervalo de integración. 
+
+También se pueden dar ambas situaciones.
+
+
+\vspace{1cm}
+
+
+\begin{miejercicio}
+
+
+	Calcula $\ \ \displaystyle \int_0^1 \dfrac 1 x \; \dd x$
+\vspace{3mm}
+
+\rule{200pt}{0.1pt}
+
+\vspace{2mm}	
+	
+	$\displaystyle \int_x^1 \dfrac 1 x \; \dd x= \eval[\mathrm{ln}\abs {x}|_x^1=  \cancelto{0}{\mathrm{ln} 1}- \mathrm{ln} |x|=-\mathrm{ln} |x| \Rightarrow $
+	$\displaystyle \int_0^1 \dfrac 1 x \; \dd x= \underset {x\to 0^+}{lim }{(-\mathrm{ln} x)} =+\infty $
+	
+	Esta integral ' impropia' es divergente, la integral no existe.
+	
+\end{miejercicio}
+
+\vspace{4mm}
+\begin{miejercicio}
+	
+	Calcula $\displaystyle \int_0^{\infty} \dfrac {1}{1+x^2}\; \dd x$
+\vspace{3mm}
+
+\rule{200pt}{0.1pt}
+
+\vspace{2mm}
+
+$\displaystyle \int \dfrac {1}{1+t^2}\; \dd t = \arctan x + \mathcal C \quad \to \quad \displaystyle \int_0^{\infty} \dfrac {1}{1+x^2}\; \dd x=\eval[\arctan x|_0^{\infty}= $
+$\underset {x\to \infty}{lim} \left[ (\arctan x) - (0) \right]$
+$=\underset {x\to \infty}{lim}{\arctan x}=\dfrac {\pi}{2}$
+
+\end{miejercicio}
+
+\vspace{4mm}
+
+\begin{miejercicio}
+	Calcula, si existen, las siguientes integrales impropias.
+	
+	\begin{multicols}{2}
+	\begin{enumerate}[a) ]
+	\item $\displaystyle \int_{-\infty}^{+\infty} \dfrac {1}{1+x^2} \; \dd x$
+	\item $\displaystyle \int_{-\infty}^{0} e^x \; \dd x$
+	\item $\displaystyle \int_{0}^{1} \dfrac {1}{\sqrt[3]{x}} \; \dd x$
+	\item $\displaystyle \int_{0}^{1} \dfrac {1}{\sqrt{1-x^2}} \; \dd x$
+	\end{enumerate}
+	\end{multicols}
+
+
+\rule{200pt}{0.1pt}
+
+\vspace{3mm}	
+
+
+\vspace{4mm} $a) \quad \displaystyle \int_{-\infty}^{+\infty} \dfrac {1}{1+x^2} \; \dd x=I_a$
+
+\vspace{2mm} Calculemos $\displaystyle \int_{-x}^{+x} \dfrac {1}{1+t^2} \; \dd t= \eval[\arctan x|_{-x}^x=\arctan x - \arctan(-x)\quad \ { con } \; x>0$
+
+\vspace{2mm} Luego $\displaystyle I_a= \underset{x\to +\infty}{lim}\;{\left[ arctan x - \arctan(-x) \right] } = \pi/2 - (-\pi/2)=\pi$
+
+
+\vspace{4mm} $b) \quad \displaystyle \int_{-\infty}^{0} e^x \; \dd x=I_b$
+
+\vspace{2mm} Calculemos $\displaystyle \int_{-x}^{0} e^t \; \dd t= \eval [e^t|_{-x}^0= 1-e^{-x}$
+
+\vspace{2mm} Luego $\displaystyle I_b=$
+$\underset {x\to + \infty}{lim}{(1-e^{-x})}=$
+$\underset {x\to + \infty}{lim}{\left(1-\dfrac {1}{e^x}\right)}=1-0=1$
+
+
+\vspace{4mm} $c) \quad \displaystyle \int_{0}^{1} \dfrac {1}{\sqrt[3]{x}} \; \dd x=I_c$
+
+\vspace{2mm} Como la función tiene discontinuidad asintótica en $x=0$, calculemos primero:
+
+\vspace{2mm} $\displaystyle \int_{x}^{1} \dfrac {1}{\sqrt[3]{x}} \; \dd x= =\int_{x}^{1} x^{-1/3} \; \dd x=3/2\;  \eval[x^{2/3}|_x^0= 3/2\; (1-x^2/3)$
+
+\vspace{2mm} Luego: $\displaystyle I_c=3/2 \; \underset{x\to 0^+}{lim}\; {1-x^{2/3}}= 3/2$
+
+
+\vspace{4mm} $d) \quad \displaystyle \int_{0}^{1} \dfrac {1}{\sqrt{1-x^2}} \; \dd x= I_d$
+
+\vspace{2mm} Función discontinua asintótica en $x=1$, calculemos:
+
+\vspace{2mm} $\displaystyle \int_{0}^{x} \dfrac {1}{\sqrt{1-x^2}} \; \dd x= \eval [\arcsin x|_0^x= \arcsin x - 0 = \arcsin x$
+
+\vspace{2mm} Luego: $\displaystyle I_d=\underset {x\to 1^-}{lim}\;{\arcsin x}= \pi/2$
+\end{miejercicio}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+
+\begin{miejercicio}
+
+Calcula, si existen, las siguientes integrales impropias.
+\begin{multicols}{2}
+\begin{enumerate}[a) ]
+\item $\displaystyle \int_{0}^{+\infty} e^{-x}\; \sin x \; \dd x\; $ (Partes)
+\item $\displaystyle \int_{-\infty}^1{} x\; e^x \;  \dd x\; $ (Partes)
+\item $\displaystyle \int_{1}^{+\infty} \cos x \;  \dd x\; $ (Inmed.)
+\item $\displaystyle \int_{4}^{+\infty} \dfrac {1}{x^2-4}\;  \dd x\; $ (Racional)
+\item $\displaystyle \int_{1}^{+\infty} \dfrac 1 x \;  \dd x\; $ (Inmed.)
+\item $\displaystyle \int_{-\infty}^{-2} \dfrac 1 {x^2} \;  \dd x\; $ (Inmed.)
+\item $\displaystyle \int_{0^+}^{e} \dfrac {\mathrm{ln} x}{\sqrt{x}} \;  \dd x\; $ (Discont: $0$; Partes)
+\item $\displaystyle \int_{0^+}^{1} x\; \mathrm{ln} x \;  \dd x\; $ (Discont: $0$; Partes)
+\end{enumerate}	
+\end{multicols}
+
+\rule{200pt}{0.1pt}
+
+\vspace{3mm}
+
+\textcolor{gris}{Sol: $a)\;1/2;\quad b); 0;\quad c)\; \nexists; \quad d)\; (\mathrm{ln}2)/2; \quad e); \nexists; \quad f); 1/2; \quad g)\; -\sqrt{e}; \quad h)\; -1/4 $}
+\end{miejercicio}
+
+
+
+
+
+
+
+\begin{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%. SECCIONES
+\chapter{texto}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (6.5,.2);
+	\fill [left color=teal!50, right color=blue!50] (6.5,0) rectangle (11.5,.2);
+	\end{tikzpicture}
+
+\vspace{1cm}
+\section{texto}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.1);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.1);
+	\end{tikzpicture}
+\vspace{0.5cm}
+
+\subsection{texto}
+\begin{tikzpicture}
+	\fill [left color=red!50, right color=teal!50] (0,0) rectangle (3.5,.01);
+	\fill [left color=teal!50, right color=blue!50] (3.5,0) rectangle (7.5,.01);
+	\end{tikzpicture}
+\vspace{0.5cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%. \begin{ ------>. 
+detsacado;  cuadro-naranja;  cuadro-gris;  miejercicio (solución extensa);  mipropuesto (solución corta y fuera del cuadro)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%. CURIOSIDAD
+\vspace{1cm}
+\color{ForestGreen!80}
+\rule{250pt}{0.2pt}
+Texto
+\vspace{-8mm}
+\begin{flushright}
+\rule{250pt}{0.2pt}		
+\end{flushright}	
+\color{black}
+\end{comment}
+
+
+
+
